@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Conversion Analysis Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 30px 0;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .stat-card h4 {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        .stat-card .subtitle {
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .insight {
+            background: #d1ecf1;
+            padding: 20px;
+            border-left: 4px solid #17a2b8;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .executive-summary {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .executive-summary h2 {
+            color: #667eea;
+            border: none;
+            margin-bottom: 25px;
+        }
+
+        .executive-summary ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .executive-summary li {
+            padding: 12px 0 12px 30px;
+            position: relative;
+            font-size: 1.1em;
+        }
+
+        .executive-summary li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            font-size: 1.2em;
+            color: #667eea;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .chart-container {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Comprehensive Conversion Analysis Report</h1>
+            <p>Detailed Analysis of Conversion Data and Performance Metrics</p>
+        </header>
+
+        <div class="content">
+            <div id="loading" class="loading">
+                Loading and analyzing data...
+            </div>
+
+            <div id="report" style="display:none;">
+                <!-- Executive Summary Section -->
+                <div class="executive-summary">
+                    <h2>Executive Summary</h2>
+                    <div id="executive-summary-content"></div>
+                </div>
+
+                <!-- Overall Conversion Section -->
+                <div class="section">
+                    <h2>1. Overall Conversion Performance</h2>
+                    <div id="overall-stats" class="stats-grid"></div>
+                    <div class="chart-container">
+                        <canvas id="overallChart"></canvas>
+                    </div>
+                    <div id="overall-insights"></div>
+                </div>
+
+                <!-- Monthly Conversion Section -->
+                <div class="section">
+                    <h2>2. Monthly Conversion Trends</h2>
+                    <div class="chart-container">
+                        <canvas id="monthlyChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="monthlyRateChart"></canvas>
+                    </div>
+                    <div id="monthly-insights"></div>
+                </div>
+
+                <!-- Per Responsible Conversion Section -->
+                <div class="section">
+                    <h2>3. Conversion by Responsible Person</h2>
+                    <div class="chart-container" style="height: 600px;">
+                        <canvas id="responsibleChart"></canvas>
+                    </div>
+                    <div class="table-container">
+                        <table id="responsibleTable">
+                            <thead>
+                                <tr>
+                                    <th>Responsible Person</th>
+                                    <th>Total Leads</th>
+                                    <th>Closed</th>
+                                    <th>In Process</th>
+                                    <th>Deal Lost</th>
+                                    <th>Conversion Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody id="responsibleTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div id="responsible-insights"></div>
+                </div>
+
+                <!-- Internal/External Conversion Section -->
+                <div class="section">
+                    <h2>4. Internal vs External Conversion</h2>
+                    <div id="internal-external-stats" class="stats-grid"></div>
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="internalExternalChart"></canvas>
+                    </div>
+                    <div id="internal-external-insights"></div>
+                </div>
+
+                <!-- Per Source Conversion Section -->
+                <div class="section">
+                    <h2>5. Conversion by Source</h2>
+                    <div class="chart-container">
+                        <canvas id="sourceChart"></canvas>
+                    </div>
+                    <div class="table-container">
+                        <table id="sourceTable">
+                            <thead>
+                                <tr>
+                                    <th>Source</th>
+                                    <th>Total Leads</th>
+                                    <th>Closed</th>
+                                    <th>Conversion Rate</th>
+                                    <th>In Process</th>
+                                    <th>Deal Lost</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sourceTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div id="source-insights"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data will be loaded from CSV file
+        let conversionData = [];
+
+        // Load and parse CSV data
+        async function loadData() {
+            try {
+                const response = await fetch('faraz analysis.csv');
+                const csvText = await response.text();
+                parseCSV(csvText);
+                analyzeData();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML =
+                    '<p style="color: #dc3545;">Error loading data. Please ensure "faraz analysis.csv" is in the same directory as this HTML file.</p>';
+            }
+        }
+
+        // Parse CSV data
+        function parseCSV(csvText) {
+            const lines = csvText.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim().replace(/^\ufeff/, ''));
+
+            for (let i = 1; i < lines.length; i++) {
+                if (lines[i].trim() === '') continue;
+
+                const values = parseCSVLine(lines[i]);
+                if (values.length < headers.length) continue;
+
+                const row = {};
+                headers.forEach((header, index) => {
+                    row[header] = values[index] ? values[index].trim() : '';
+                });
+
+                // Only include rows with valid status
+                if (row.STATUS && ['CLOSED', 'DEAL LOST', 'INPROCESS'].includes(row.STATUS)) {
+                    conversionData.push(row);
+                }
+            }
+        }
+
+        // Helper function to parse CSV line (handles commas in quotes)
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current);
+
+            return result.map(v => v.replace(/^"|"$/g, ''));
+        }
+
+        // Main analysis function
+        function analyzeData() {
+            if (conversionData.length === 0) {
+                document.getElementById('loading').innerHTML =
+                    '<p style="color: #dc3545;">No valid data found in the CSV file.</p>';
+                return;
+            }
+
+            // Generate all analyses
+            generateOverallAnalysis();
+            generateMonthlyAnalysis();
+            generateResponsibleAnalysis();
+            generateInternalExternalAnalysis();
+            generateSourceAnalysis();
+            generateExecutiveSummary();
+
+            // Show report
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('report').style.display = 'block';
+        }
+
+        // 1. Overall Conversion Analysis
+        function generateOverallAnalysis() {
+            const total = conversionData.length;
+            const closed = conversionData.filter(d => d.STATUS === 'CLOSED').length;
+            const inProcess = conversionData.filter(d => d.STATUS === 'INPROCESS').length;
+            const dealLost = conversionData.filter(d => d.STATUS === 'DEAL LOST').length;
+
+            const conversionRate = ((closed / (closed + dealLost)) * 100).toFixed(2);
+            const overallRate = ((closed / total) * 100).toFixed(2);
+
+            // Stats cards
+            const statsHTML = `
+                <div class="stat-card">
+                    <h4>Total Leads</h4>
+                    <div class="value">${total.toLocaleString()}</div>
+                    <div class="subtitle">All records</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Closed Deals</h4>
+                    <div class="value">${closed.toLocaleString()}</div>
+                    <div class="subtitle">${overallRate}% of total</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Conversion Rate</h4>
+                    <div class="value">${conversionRate}%</div>
+                    <div class="subtitle">Closed vs Final</div>
+                </div>
+                <div class="stat-card">
+                    <h4>In Process</h4>
+                    <div class="value">${inProcess.toLocaleString()}</div>
+                    <div class="subtitle">${((inProcess/total)*100).toFixed(1)}% pending</div>
+                </div>
+            `;
+
+            document.getElementById('overall-stats').innerHTML = statsHTML;
+
+            // Overall chart
+            const ctx = document.getElementById('overallChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Closed', 'In Process', 'Deal Lost'],
+                    datasets: [{
+                        data: [closed, inProcess, dealLost],
+                        backgroundColor: [
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(255, 193, 7, 0.8)',
+                            'rgba(220, 53, 69, 0.8)'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 14 },
+                                padding: 20
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Overall Lead Status Distribution',
+                            font: { size: 18, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+
+            // Insights
+            const insightsHTML = `
+                <div class="highlight">
+                    <h3>Key Findings</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>The overall conversion rate stands at <strong>${conversionRate}%</strong> (closed deals vs finalized leads)</li>
+                        <li><strong>${dealLost.toLocaleString()}</strong> deals were lost, representing ${((dealLost/(closed+dealLost))*100).toFixed(1)}% of finalized leads</li>
+                        <li><strong>${inProcess.toLocaleString()}</strong> leads are still in process with potential for conversion</li>
+                        <li>If all in-process leads close successfully, the potential conversion rate could reach ${(((closed+inProcess)/(total))*100).toFixed(2)}%</li>
+                    </ul>
+                </div>
+            `;
+
+            document.getElementById('overall-insights').innerHTML = insightsHTML;
+        }
+
+        // 2. Monthly Conversion Analysis
+        function generateMonthlyAnalysis() {
+            const monthlyData = {};
+
+            conversionData.forEach(row => {
+                const dateStr = row.Created;
+                if (!dateStr || !dateStr.match(/\d{2}\/\d{2}\/\d{4}/)) return;
+
+                const parts = dateStr.split('/');
+                const month = parts[1];
+                const year = parts[2];
+                const key = `${year}-${month}`;
+
+                if (!monthlyData[key]) {
+                    monthlyData[key] = { closed: 0, inProcess: 0, dealLost: 0, total: 0 };
+                }
+
+                monthlyData[key].total++;
+                if (row.STATUS === 'CLOSED') monthlyData[key].closed++;
+                else if (row.STATUS === 'INPROCESS') monthlyData[key].inProcess++;
+                else if (row.STATUS === 'DEAL LOST') monthlyData[key].dealLost++;
+            });
+
+            // Sort by date
+            const sortedMonths = Object.keys(monthlyData).sort();
+
+            const labels = sortedMonths.map(m => {
+                const [year, month] = m.split('-');
+                const date = new Date(year, month - 1);
+                return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+            });
+
+            const closedData = sortedMonths.map(m => monthlyData[m].closed);
+            const inProcessData = sortedMonths.map(m => monthlyData[m].inProcess);
+            const dealLostData = sortedMonths.map(m => monthlyData[m].dealLost);
+            const conversionRates = sortedMonths.map(m => {
+                const closed = monthlyData[m].closed;
+                const lost = monthlyData[m].dealLost;
+                return closed + lost > 0 ? ((closed / (closed + lost)) * 100).toFixed(2) : 0;
+            });
+
+            // Monthly volume chart
+            const ctx1 = document.getElementById('monthlyChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Closed',
+                            data: closedData,
+                            backgroundColor: 'rgba(40, 167, 69, 0.8)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'In Process',
+                            data: inProcessData,
+                            backgroundColor: 'rgba(255, 193, 7, 0.8)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Deal Lost',
+                            data: dealLostData,
+                            backgroundColor: 'rgba(220, 53, 69, 0.8)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { stacked: true },
+                        y: { stacked: true, beginAtZero: true }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { size: 12 }, padding: 15 }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Monthly Lead Volume by Status',
+                            font: { size: 16, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+
+            // Monthly conversion rate chart
+            const ctx2 = document.getElementById('monthlyRateChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Conversion Rate (%)',
+                        data: conversionRates,
+                        borderColor: 'rgba(102, 126, 234, 1)',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: Math.max(...conversionRates) * 1.2,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { size: 12 }, padding: 15 }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Monthly Conversion Rate Trend',
+                            font: { size: 16, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+
+            // Monthly insights
+            const avgRate = (conversionRates.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / conversionRates.length).toFixed(2);
+            const bestMonth = sortedMonths[conversionRates.indexOf(Math.max(...conversionRates))];
+            const worstMonth = sortedMonths[conversionRates.indexOf(Math.min(...conversionRates))];
+
+            const insightsHTML = `
+                <div class="insight">
+                    <h3>Monthly Trends Analysis</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Average monthly conversion rate: <strong>${avgRate}%</strong></li>
+                        <li>Best performing month: <strong>${labels[sortedMonths.indexOf(bestMonth)]}</strong> with ${Math.max(...conversionRates)}% conversion</li>
+                        <li>Lowest performing month: <strong>${labels[sortedMonths.indexOf(worstMonth)]}</strong> with ${Math.min(...conversionRates)}% conversion</li>
+                        <li>Total months analyzed: <strong>${sortedMonths.length}</strong></li>
+                        <li>${conversionRates[conversionRates.length-1] > conversionRates[0] ? 'Positive trend detected in recent months' : 'Conversion rate has fluctuated over the period'}</li>
+                    </ul>
+                </div>
+            `;
+
+            document.getElementById('monthly-insights').innerHTML = insightsHTML;
+        }
+
+        // 3. Per Responsible Analysis
+        function generateResponsibleAnalysis() {
+            const responsibleData = {};
+
+            conversionData.forEach(row => {
+                const responsible = row.Responsible || 'Unknown';
+
+                if (!responsibleData[responsible]) {
+                    responsibleData[responsible] = {
+                        total: 0,
+                        closed: 0,
+                        inProcess: 0,
+                        dealLost: 0
+                    };
+                }
+
+                responsibleData[responsible].total++;
+                if (row.STATUS === 'CLOSED') responsibleData[responsible].closed++;
+                else if (row.STATUS === 'INPROCESS') responsibleData[responsible].inProcess++;
+                else if (row.STATUS === 'DEAL LOST') responsibleData[responsible].dealLost++;
+            });
+
+            // Sort by conversion rate
+            const sortedResponsible = Object.entries(responsibleData)
+                .map(([name, data]) => ({
+                    name,
+                    ...data,
+                    conversionRate: data.closed + data.dealLost > 0
+                        ? ((data.closed / (data.closed + data.dealLost)) * 100).toFixed(2)
+                        : 0
+                }))
+                .sort((a, b) => b.closed - a.closed)
+                .slice(0, 20); // Top 20
+
+            // Chart
+            const ctx = document.getElementById('responsibleChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sortedResponsible.map(r => r.name.length > 20 ? r.name.substring(0, 20) + '...' : r.name),
+                    datasets: [{
+                        label: 'Closed',
+                        data: sortedResponsible.map(r => r.closed),
+                        backgroundColor: 'rgba(40, 167, 69, 0.8)'
+                    }, {
+                        label: 'In Process',
+                        data: sortedResponsible.map(r => r.inProcess),
+                        backgroundColor: 'rgba(255, 193, 7, 0.8)'
+                    }, {
+                        label: 'Deal Lost',
+                        data: sortedResponsible.map(r => r.dealLost),
+                        backgroundColor: 'rgba(220, 53, 69, 0.8)'
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { stacked: true, beginAtZero: true },
+                        y: { stacked: true }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { size: 12 }, padding: 15 }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Top 20 Performers by Closed Deals',
+                            font: { size: 16, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+
+            // Table
+            let tableHTML = '';
+            Object.entries(responsibleData)
+                .map(([name, data]) => ({
+                    name,
+                    ...data,
+                    conversionRate: data.closed + data.dealLost > 0
+                        ? ((data.closed / (data.closed + data.dealLost)) * 100).toFixed(2)
+                        : 0
+                }))
+                .sort((a, b) => parseFloat(b.conversionRate) - parseFloat(a.conversionRate))
+                .forEach(person => {
+                    const rate = parseFloat(person.conversionRate);
+                    const rateColor = rate >= 5 ? '#28a745' : rate >= 1 ? '#ffc107' : '#dc3545';
+
+                    tableHTML += `
+                        <tr>
+                            <td><strong>${person.name}</strong></td>
+                            <td>${person.total}</td>
+                            <td style="color: #28a745; font-weight: bold;">${person.closed}</td>
+                            <td>${person.inProcess}</td>
+                            <td style="color: #dc3545;">${person.dealLost}</td>
+                            <td>
+                                <span style="color: ${rateColor}; font-weight: bold;">${person.conversionRate}%</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: ${person.conversionRate}%; background: ${rateColor};"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+            document.getElementById('responsibleTableBody').innerHTML = tableHTML;
+
+            // Insights
+            const topPerformer = sortedResponsible[0];
+            const totalPeople = Object.keys(responsibleData).length;
+
+            const insightsHTML = `
+                <div class="highlight">
+                    <h3>Performance Highlights</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Top performer: <strong>${topPerformer.name}</strong> with ${topPerformer.closed} closed deals (${topPerformer.conversionRate}% conversion)</li>
+                        <li>Total team members: <strong>${totalPeople}</strong></li>
+                        <li>Average closed deals per person: <strong>${(conversionData.filter(d => d.STATUS === 'CLOSED').length / totalPeople).toFixed(1)}</strong></li>
+                        <li>Team members with conversions: <strong>${Object.values(responsibleData).filter(d => d.closed > 0).length}</strong></li>
+                    </ul>
+                </div>
+            `;
+
+            document.getElementById('responsible-insights').innerHTML = insightsHTML;
+        }
+
+        // 4. Internal/External Analysis
+        function generateInternalExternalAnalysis() {
+            const internalExternal = {
+                INTERNAL: { total: 0, closed: 0, inProcess: 0, dealLost: 0 },
+                EXTERNAL: { total: 0, closed: 0, inProcess: 0, dealLost: 0 }
+            };
+
+            conversionData.forEach(row => {
+                const type = row['Internal/External'] && row['Internal/External'].toUpperCase() === 'EXTERNAL' ? 'EXTERNAL' : 'INTERNAL';
+
+                internalExternal[type].total++;
+                if (row.STATUS === 'CLOSED') internalExternal[type].closed++;
+                else if (row.STATUS === 'INPROCESS') internalExternal[type].inProcess++;
+                else if (row.STATUS === 'DEAL LOST') internalExternal[type].dealLost++;
+            });
+
+            const internalRate = internalExternal.INTERNAL.closed + internalExternal.INTERNAL.dealLost > 0
+                ? ((internalExternal.INTERNAL.closed / (internalExternal.INTERNAL.closed + internalExternal.INTERNAL.dealLost)) * 100).toFixed(2)
+                : 0;
+
+            const externalRate = internalExternal.EXTERNAL.closed + internalExternal.EXTERNAL.dealLost > 0
+                ? ((internalExternal.EXTERNAL.closed / (internalExternal.EXTERNAL.closed + internalExternal.EXTERNAL.dealLost)) * 100).toFixed(2)
+                : 0;
+
+            // Stats cards
+            const statsHTML = `
+                <div class="stat-card">
+                    <h4>Internal Leads</h4>
+                    <div class="value">${internalExternal.INTERNAL.total.toLocaleString()}</div>
+                    <div class="subtitle">${internalExternal.INTERNAL.closed} closed (${internalRate}%)</div>
+                </div>
+                <div class="stat-card">
+                    <h4>External Leads</h4>
+                    <div class="value">${internalExternal.EXTERNAL.total.toLocaleString()}</div>
+                    <div class="subtitle">${internalExternal.EXTERNAL.closed} closed (${externalRate}%)</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Internal vs External</h4>
+                    <div class="value">${internalExternal.INTERNAL.total > internalExternal.EXTERNAL.total ? 'Internal' : 'External'}</div>
+                    <div class="subtitle">Higher volume source</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Better Conversion</h4>
+                    <div class="value">${parseFloat(internalRate) > parseFloat(externalRate) ? 'Internal' : 'External'}</div>
+                    <div class="subtitle">${Math.max(internalRate, externalRate)}% rate</div>
+                </div>
+            `;
+
+            document.getElementById('internal-external-stats').innerHTML = statsHTML;
+
+            // Chart
+            const ctx = document.getElementById('internalExternalChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Internal', 'External'],
+                    datasets: [{
+                        label: 'Closed',
+                        data: [internalExternal.INTERNAL.closed, internalExternal.EXTERNAL.closed],
+                        backgroundColor: 'rgba(40, 167, 69, 0.8)'
+                    }, {
+                        label: 'In Process',
+                        data: [internalExternal.INTERNAL.inProcess, internalExternal.EXTERNAL.inProcess],
+                        backgroundColor: 'rgba(255, 193, 7, 0.8)'
+                    }, {
+                        label: 'Deal Lost',
+                        data: [internalExternal.INTERNAL.dealLost, internalExternal.EXTERNAL.dealLost],
+                        backgroundColor: 'rgba(220, 53, 69, 0.8)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { stacked: false },
+                        y: { beginAtZero: true }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { size: 12 }, padding: 15 }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Internal vs External Lead Performance',
+                            font: { size: 16, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+
+            // Insights
+            const insightsHTML = `
+                <div class="insight">
+                    <h3>Internal vs External Analysis</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Internal leads: <strong>${internalExternal.INTERNAL.total.toLocaleString()}</strong> (${((internalExternal.INTERNAL.total/conversionData.length)*100).toFixed(1)}% of total)</li>
+                        <li>External leads: <strong>${internalExternal.EXTERNAL.total.toLocaleString()}</strong> (${((internalExternal.EXTERNAL.total/conversionData.length)*100).toFixed(1)}% of total)</li>
+                        <li>Internal conversion rate: <strong>${internalRate}%</strong></li>
+                        <li>External conversion rate: <strong>${externalRate}%</strong></li>
+                        <li>${parseFloat(internalRate) > parseFloat(externalRate)
+                            ? 'Internal leads show better conversion performance'
+                            : parseFloat(externalRate) > parseFloat(internalRate)
+                            ? 'External leads show better conversion performance'
+                            : 'Internal and external leads have similar conversion rates'}</li>
+                    </ul>
+                </div>
+            `;
+
+            document.getElementById('internal-external-insights').innerHTML = insightsHTML;
+        }
+
+        // 5. Per Source Analysis
+        function generateSourceAnalysis() {
+            const sourceData = {};
+
+            conversionData.forEach(row => {
+                const source = row.Source || 'Unknown';
+
+                if (!sourceData[source]) {
+                    sourceData[source] = {
+                        total: 0,
+                        closed: 0,
+                        inProcess: 0,
+                        dealLost: 0
+                    };
+                }
+
+                sourceData[source].total++;
+                if (row.STATUS === 'CLOSED') sourceData[source].closed++;
+                else if (row.STATUS === 'INPROCESS') sourceData[source].inProcess++;
+                else if (row.STATUS === 'DEAL LOST') sourceData[source].dealLost++;
+            });
+
+            // Sort by total volume
+            const sortedSources = Object.entries(sourceData)
+                .map(([name, data]) => ({
+                    name,
+                    ...data,
+                    conversionRate: data.closed + data.dealLost > 0
+                        ? ((data.closed / (data.closed + data.dealLost)) * 100).toFixed(2)
+                        : 0
+                }))
+                .sort((a, b) => b.total - a.total);
+
+            // Chart
+            const ctx = document.getElementById('sourceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sortedSources.map(s => s.name),
+                    datasets: [{
+                        label: 'Total Leads',
+                        data: sortedSources.map(s => s.total),
+                        backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                        yAxisID: 'y'
+                    }, {
+                        label: 'Conversion Rate (%)',
+                        data: sortedSources.map(s => s.conversionRate),
+                        type: 'line',
+                        borderColor: 'rgba(220, 53, 69, 1)',
+                        backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                        borderWidth: 3,
+                        yAxisID: 'y1',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Total Leads'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            beginAtZero: true,
+                            max: Math.max(...sortedSources.map(s => parseFloat(s.conversionRate))) * 1.2,
+                            title: {
+                                display: true,
+                                text: 'Conversion Rate (%)'
+                            },
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { size: 12 }, padding: 15 }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Lead Volume and Conversion Rate by Source',
+                            font: { size: 16, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+
+            // Table
+            let tableHTML = '';
+            sortedSources.forEach(source => {
+                const rate = parseFloat(source.conversionRate);
+                const rateColor = rate >= 5 ? '#28a745' : rate >= 1 ? '#ffc107' : '#dc3545';
+
+                tableHTML += `
+                    <tr>
+                        <td><strong>${source.name}</strong></td>
+                        <td>${source.total.toLocaleString()}</td>
+                        <td style="color: #28a745; font-weight: bold;">${source.closed}</td>
+                        <td>
+                            <span style="color: ${rateColor}; font-weight: bold;">${source.conversionRate}%</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${Math.min(source.conversionRate, 100)}%; background: ${rateColor};"></div>
+                            </div>
+                        </td>
+                        <td>${source.inProcess}</td>
+                        <td style="color: #dc3545;">${source.dealLost}</td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById('sourceTableBody').innerHTML = tableHTML;
+
+            // Insights
+            const topSource = sortedSources[0];
+            const bestConversionSource = sortedSources.reduce((max, source) =>
+                parseFloat(source.conversionRate) > parseFloat(max.conversionRate) ? source : max
+            );
+
+            const insightsHTML = `
+                <div class="highlight">
+                    <h3>Source Performance Insights</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Highest volume source: <strong>${topSource.name}</strong> with ${topSource.total.toLocaleString()} leads (${((topSource.total/conversionData.length)*100).toFixed(1)}% of total)</li>
+                        <li>Best converting source: <strong>${bestConversionSource.name}</strong> with ${bestConversionSource.conversionRate}% conversion rate</li>
+                        <li>Total unique sources: <strong>${sortedSources.length}</strong></li>
+                        <li>Sources with conversions: <strong>${sortedSources.filter(s => s.closed > 0).length}</strong></li>
+                        <li>Top 3 sources by volume: ${sortedSources.slice(0, 3).map(s => s.name).join(', ')}</li>
+                    </ul>
+                </div>
+            `;
+
+            document.getElementById('source-insights').innerHTML = insightsHTML;
+        }
+
+        // Generate Executive Summary
+        function generateExecutiveSummary() {
+            const total = conversionData.length;
+            const closed = conversionData.filter(d => d.STATUS === 'CLOSED').length;
+            const dealLost = conversionData.filter(d => d.STATUS === 'DEAL LOST').length;
+            const conversionRate = ((closed / (closed + dealLost)) * 100).toFixed(2);
+
+            // Find best source
+            const sourceData = {};
+            conversionData.forEach(row => {
+                const source = row.Source || 'Unknown';
+                if (!sourceData[source]) sourceData[source] = { closed: 0, dealLost: 0 };
+                if (row.STATUS === 'CLOSED') sourceData[source].closed++;
+                else if (row.STATUS === 'DEAL LOST') sourceData[source].dealLost++;
+            });
+
+            const bestSource = Object.entries(sourceData)
+                .map(([name, data]) => ({
+                    name,
+                    rate: data.closed + data.dealLost > 0 ? ((data.closed / (data.closed + data.dealLost)) * 100).toFixed(2) : 0,
+                    closed: data.closed
+                }))
+                .filter(s => s.closed >= 5)
+                .sort((a, b) => parseFloat(b.rate) - parseFloat(a.rate))[0];
+
+            // Find top performer
+            const responsibleData = {};
+            conversionData.forEach(row => {
+                const responsible = row.Responsible || 'Unknown';
+                if (!responsibleData[responsible]) responsibleData[responsible] = { closed: 0 };
+                if (row.STATUS === 'CLOSED') responsibleData[responsible].closed++;
+            });
+
+            const topPerformer = Object.entries(responsibleData)
+                .map(([name, data]) => ({ name, closed: data.closed }))
+                .sort((a, b) => b.closed - a.closed)[0];
+
+            const summaryHTML = `
+                <p style="font-size: 1.1em; margin-bottom: 20px;">
+                    This comprehensive analysis examines ${total.toLocaleString()} lead records to provide insights into conversion performance,
+                    trends, and key drivers of success.
+                </p>
+                <h3>Key Takeaways</h3>
+                <ul>
+                    <li>Overall conversion rate of <strong>${conversionRate}%</strong> with ${closed} successfully closed deals out of ${(closed + dealLost).toLocaleString()} finalized leads</li>
+                    <li>Top performing source: <strong>${bestSource ? bestSource.name : 'N/A'}</strong> achieving ${bestSource ? bestSource.rate : 'N/A'}% conversion rate</li>
+                    <li>Leading team member: <strong>${topPerformer.name}</strong> with ${topPerformer.closed} closed deals</li>
+                    <li>${((conversionData.filter(d => d.STATUS === 'INPROCESS').length / total) * 100).toFixed(1)}% of leads are currently in process with conversion potential</li>
+                    <li>Internal leads represent ${((conversionData.filter(d => (d['Internal/External'] || 'INTERNAL').toUpperCase() === 'INTERNAL').length / total) * 100).toFixed(1)}% of the total pipeline</li>
+                </ul>
+                <div class="highlight" style="margin-top: 20px;">
+                    <strong>Recommendation:</strong> Focus on high-converting sources like ${bestSource ? bestSource.name : 'top performers'}
+                    and replicate successful strategies from top performers to improve overall conversion rates.
+                </div>
+            `;
+
+            document.getElementById('executive-summary-content').innerHTML = summaryHTML;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>
