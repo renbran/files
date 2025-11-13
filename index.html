@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <svg class="title-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" fill="currentColor"/>
+                    </svg>
+                    Data Visualization Dashboard
+                </h1>
+                <p class="subtitle">Transform your CSV and Excel files into beautiful, interactive charts</p>
+            </div>
+        </header>
+
+        <div class="upload-section">
+            <div class="upload-area" id="uploadArea">
+                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h3 class="upload-title">Drop your file here</h3>
+                <p class="upload-text">or click to browse</p>
+                <p class="upload-formats">Supports CSV and Excel files (.csv, .xlsx, .xls)</p>
+                <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" hidden>
+            </div>
+
+            <div class="file-info" id="fileInfo" style="display: none;">
+                <div class="file-info-content">
+                    <svg class="file-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="file-details">
+                        <p class="file-name" id="fileName"></p>
+                        <p class="file-stats" id="fileStats"></p>
+                    </div>
+                    <button class="btn-remove" id="btnRemove">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls" id="controls" style="display: none;">
+            <div class="control-group">
+                <label for="chartType">Chart Type:</label>
+                <select id="chartType" class="select-input">
+                    <option value="auto">Auto Detect</option>
+                    <option value="bar">Bar Chart</option>
+                    <option value="line">Line Chart</option>
+                    <option value="pie">Pie Chart</option>
+                    <option value="doughnut">Doughnut Chart</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="dataColumn">Data Column:</label>
+                <select id="dataColumn" class="select-input"></select>
+            </div>
+        </div>
+
+        <div class="stats-grid" id="statsGrid" style="display: none;">
+            <!-- Stats cards will be inserted here -->
+        </div>
+
+        <div class="charts-container" id="chartsContainer" style="display: none;">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">Primary Analysis</h3>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="chart1"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">Secondary Analysis</h3>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="chart2"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">Trend Analysis</h3>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="chart3"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">Distribution</h3>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="chart4"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-table-container" id="dataTableContainer" style="display: none;">
+            <div class="table-header">
+                <h3 class="table-title">Data Preview</h3>
+                <div class="table-controls">
+                    <button class="btn-secondary" id="btnExport">Export Insights</button>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table" id="dataTable"></table>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "data-visualization-app",
+  "version": "1.0.0",
+  "description": "Beautiful data visualization app for CSV and Excel files",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8080"
+  },
+  "keywords": ["data", "visualization", "charts", "csv", "excel"],
+  "author": "",
+  "license": "MIT"
+}
