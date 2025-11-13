@@ -1,0 +1,35 @@
+{
+  "actual_deals": 522,
+  "total_leads": 29768,
+  "post_june_leads": 1,
+  "pre_june_leads": 29767,
+  "scenarios": {
+    "scenario_1_all_leads": {
+      "leads": 29768,
+      "deals": 522,
+      "conversion_rate": 1.7535608707336738
+    },
+    "scenario_2_post_june_only": {
+      "leads": 1,
+      "deals": 522,
+      "conversion_rate": 52200.0
+    },
+    "scenario_3_conservative_split": {
+      "pre_june_deals": 104,
+      "post_june_deals": 417,
+      "post_june_conversion": 41700.0
+    },
+    "scenario_4_equal_monthly": {
+      "pre_june_deals": 478,
+      "post_june_deals": 43,
+      "post_june_conversion": 4300.0,
+      "deals_per_month": 43.5
+    }
+  },
+  "post_june_source_distribution": {
+    "Facebook": 1
+  },
+  "monthly_breakdown": {
+    "2025-09": 1
+  }
+}
