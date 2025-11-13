@@ -1,0 +1,86 @@
+{
+  "original_data": {
+    "total_leads": 29066,
+    "status_distribution": {
+      "INPROCESS": 6100,
+      "DEAL LOST": 22768,
+      "CLOSED": 198
+    },
+    "deal_lost_rate": 78.33207183651001,
+    "closed_rate": 0.6812082845936833
+  },
+  "pipeline_data": {
+    "total_records": 29768,
+    "stage_distribution": {
+      "ATTEMPT": 2179,
+      "NEW": 1844,
+      "UNSUCCESSFUL": 13991,
+      "CONTACTED": 1204,
+      "Junk Lead": 9537,
+      "OPTIONS SENT": 500,
+      "CUSTOMER": 220,
+      "IDLE": 249,
+      "HOT": 44
+    },
+    "source_distribution": {
+      "Facebook": 16826,
+      "Instagram": 8760,
+      "WhatsApp": 2193,
+      "Landing Page": 603,
+      "Bayut": 492,
+      "Propertyfinder": 370,
+      "E-Mail": 158,
+      "Call": 143,
+      "Personal": 97,
+      "WhatsApp - WhatsApp - T2": 74,
+      "External Broker": 21,
+      "Referral": 18,
+      "Website": 2,
+      "CRM form": 1,
+      "SMS": 1
+    },
+    "top_agents": {
+      "CRM System": 23374,
+      "Faraaz Arif": 1257,
+      "Adnan Arif": 372,
+      "Ahmed Amer": 322,
+      "Modar Mawas": 271,
+      "Saad Khan": 238,
+      "Maickel Faragalla": 233,
+      "Mehdi Mofidi": 224,
+      "Alisar Al Najdi": 222,
+      "Monika Milkova": 207,
+      "Mohamed Ali Zayani": 201,
+      "Mohammad Yaghmour": 179,
+      "Davide Bonaldo": 171,
+      "Tina Almuhtashem": 158,
+      "Radwa Ahmed": 157
+    },
+    "year_distribution": {
+      "2024": 8440,
+      "2025": 21328
+    }
+  },
+  "comparison": {
+    "overlapping_lead_ids": 29066,
+    "unique_to_original": 0,
+    "unique_to_pipeline": 702,
+    "common_sources": [
+      "WhatsApp",
+      "SMS",
+      "Propertyfinder",
+      "Landing Page",
+      "Call",
+      "Website",
+      "Bayut",
+      "E-Mail",
+      "Personal",
+      "Facebook",
+      "WhatsApp - WhatsApp - T2",
+      "Referral",
+      "CRM form",
+      "External Broker",
+      "Instagram"
+    ]
+  }
+}

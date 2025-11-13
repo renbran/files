@@ -1,0 +1,207 @@
+{
+  "funnel_metrics": {
+    "total_leads": 29768,
+    "qualified_leads": 20231,
+    "customers": 0,
+    "hot_leads": 44,
+    "options_sent": 500,
+    "contacted": 1204,
+    "attempts": 2179,
+    "new_leads": 1844,
+    "unsuccessful": 13991,
+    "junk_leads": 0
+  },
+  "conversion_rates": {
+    "overall_conversion_rate": 0.7390486428379468,
+    "qualified_conversion_rate": 1.0874400672235678
+  },
+  "source_performance": {
+    "Personal": {
+      "total": 97,
+      "customers": 65,
+      "conversion_rate": 67.0103092783505,
+      "active_pipeline": 8
+    },
+    "Call": {
+      "total": 143,
+      "customers": 57,
+      "conversion_rate": 39.86013986013986,
+      "active_pipeline": 11
+    },
+    "Facebook": {
+      "total": 16826,
+      "customers": 39,
+      "conversion_rate": 0.23178414358730534,
+      "active_pipeline": 873
+    },
+    "External Broker": {
+      "total": 21,
+      "customers": 20,
+      "conversion_rate": 95.23809523809523,
+      "active_pipeline": 0
+    },
+    "Instagram": {
+      "total": 8760,
+      "customers": 14,
+      "conversion_rate": 0.15981735159817353,
+      "active_pipeline": 537
+    },
+    "Referral": {
+      "total": 18,
+      "customers": 14,
+      "conversion_rate": 77.77777777777779,
+      "active_pipeline": 2
+    },
+    "Propertyfinder": {
+      "total": 370,
+      "customers": 3,
+      "conversion_rate": 0.8108108108108109,
+      "active_pipeline": 28
+    },
+    "Bayut": {
+      "total": 492,
+      "customers": 3,
+      "conversion_rate": 0.6097560975609756,
+      "active_pipeline": 60
+    },
+    "WhatsApp": {
+      "total": 2193,
+      "customers": 2,
+      "conversion_rate": 0.09119927040583675,
+      "active_pipeline": 111
+    },
+    "E-Mail": {
+      "total": 158,
+      "customers": 0,
+      "conversion_rate": 0.0,
+      "active_pipeline": 0
+    },
+    "Landing Page": {
+      "total": 603,
+      "customers": 0,
+      "conversion_rate": 0.0,
+      "active_pipeline": 113
+    },
+    "Website": {
+      "total": 2,
+      "customers": 0,
+      "conversion_rate": 0.0,
+      "active_pipeline": 0
+    },
+    "WhatsApp - WhatsApp - T2": {
+      "total": 74,
+      "customers": 0,
+      "conversion_rate": 0.0,
+      "active_pipeline": 4
+    },
+    "CRM form": {
+      "total": 1,
+      "customers": 0,
+      "conversion_rate": 0.0,
+      "active_pipeline": 1
+    },
+    "SMS": {
+      "total": 1,
+      "customers": 0,
+      "conversion_rate": 0.0,
+      "active_pipeline": 0
+    }
+  },
+  "top_agents": {
+    "Wessam Simon": {
+      "total": 136,
+      "customers": 21,
+      "conversion_rate": 15.441176470588236
+    },
+    "Sina Saeedi": {
+      "total": 47,
+      "customers": 15,
+      "conversion_rate": 31.914893617021278
+    },
+    "Claudio Panato": {
+      "total": 12,
+      "customers": 12,
+      "conversion_rate": 100.0
+    },
+    "Radwa Ahmed": {
+      "total": 157,
+      "customers": 11,
+      "conversion_rate": 7.006369426751593
+    },
+    "Hajar Mohammed": {
+      "total": 17,
+      "customers": 11,
+      "conversion_rate": 64.70588235294117
+    },
+    "Jerome Padilla": {
+      "total": 31,
+      "customers": 11,
+      "conversion_rate": 35.483870967741936
+    },
+    "Davide Bonaldo": {
+      "total": 171,
+      "customers": 9,
+      "conversion_rate": 5.263157894736842
+    },
+    "Karim El Sabagh": {
+      "total": 120,
+      "customers": 8,
+      "conversion_rate": 6.666666666666667
+    },
+    "Alisar Al Najdi": {
+      "total": 222,
+      "customers": 8,
+      "conversion_rate": 3.6036036036036037
+    },
+    "Mehdi Mofidi": {
+      "total": 224,
+      "customers": 8,
+      "conversion_rate": 3.571428571428571
+    },
+    "Samia Khan": {
+      "total": 68,
+      "customers": 7,
+      "conversion_rate": 10.294117647058822
+    },
+    "Khaoula Boutouil": {
+      "total": 130,
+      "customers": 6,
+      "conversion_rate": 4.615384615384616
+    },
+    "Saad Khan": {
+      "total": 238,
+      "customers": 6,
+      "conversion_rate": 2.5210084033613445
+    },
+    "Ahmad Walid": {
+      "total": 74,
+      "customers": 6,
+      "conversion_rate": 8.108108108108109
+    },
+    "Ahmed Amer": {
+      "total": 322,
+      "customers": 5,
+      "conversion_rate": 1.5527950310559007
+    },
+    "Igor Khomenko": {
+      "total": 46,
+      "customers": 4,
+      "conversion_rate": 8.695652173913043
+    },
+    "Maickel Faragalla": {
+      "total": 233,
+      "customers": 4,
+      "conversion_rate": 1.7167381974248928
+    },
+    "Safa El Amri": {
+      "total": 41,
+      "customers": 4,
+      "conversion_rate": 9.75609756097561
+    },
+    "Adnan Arif": {
+      "total": 372,
+      "customers": 3,
+      "conversion_rate": 0.8064516129032258
+    }
+  }
+}
