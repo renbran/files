@@ -1,0 +1,60 @@
+{
+  "total_leads": 29066,
+  "status_distribution": {
+    "INPROCESS": 6100,
+    "DEAL LOST": 22768,
+    "CLOSED": 198
+  },
+  "source_distribution": {
+    "Facebook": 16514,
+    "Instagram": 8584,
+    "WhatsApp": 2183,
+    "Landing Page": 532,
+    "Bayut": 442,
+    "Propertyfinder": 310,
+    "E-Mail": 154,
+    "Call": 130,
+    "Personal": 94,
+    "WhatsApp - WhatsApp - T2": 74,
+    "External Broker": 18,
+    "Referral": 18,
+    "Website": 2,
+    "CRM form": 1,
+    "SMS": 1
+  },
+  "top_agents": {
+    "CRM System": 22762,
+    "Faraaz Arif": 1191,
+    "Adnan Arif": 380,
+    "Alisar Al Najdi": 316,
+    "Saad Khan": 265,
+    "Ahmed Amer": 252,
+    "Mariam Rahouli": 238,
+    "Mohamed Ali Zayani": 224,
+    "Mehdi Mofidi": 222,
+    "Maickel Faragalla": 214,
+    "Radwa Ahmed": 188,
+    "Davide Bonaldo": 187,
+    "Monika Milkova": 176,
+    "Mohammad Yaghmour": 151,
+    "Modar Mawas": 148
+  },
+  "year_distribution": {
+    "2024": 8440,
+    "2025": 20626
+  },
+  "monthly_distribution": {
+    "2024-11": 1546,
+    "2024-12": 1365,
+    "2025-01": 1529,
+    "2025-02": 1359,
+    "2025-03": 1689,
+    "2025-04": 1440,
+    "2025-05": 2008,
+    "2025-06": 2508,
+    "2025-07": 2225,
+    "2025-08": 2117,
+    "2025-09": 2325,
+    "2025-10": 3426
+  }
+}
